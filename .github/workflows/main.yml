@@ -36,5 +36,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}, ${{ if eq(steps.extract_branch.outputs.branch, 'main') }}main${{ else }}develop${{ endif }}
+          tags: ${{ steps.meta.outputs.tags }}, ${{ steps.extract_branch.outputs.branch == 'main' && 'main' || 'develop' }}
           labels: ${{ steps.meta.outputs.labels }}
